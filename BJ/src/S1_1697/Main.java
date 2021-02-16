@@ -11,6 +11,7 @@ public class Main {
 	static boolean [] check = new boolean[100001];
 
 	public static void main(String[] args) {
+		// 입력
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		k = sc.nextInt();
@@ -21,7 +22,10 @@ public class Main {
 			System.exit(0);
 		}
 		
+		// check 배열 초기화
 		Arrays.fill(check, false);
+		
+		// 큐 생성
 		Queue<Integer> q = new LinkedList<>();
 		q.add(n);
 		check[n] = true;
@@ -31,7 +35,9 @@ public class Main {
 
 	private static void BFS(Queue<Integer> q) {
 		int time = 0;
+		//BFS 시작
 		while(!q.isEmpty()) {
+			//같은 시간이 걸리는 노드들끼리 탐색
 			int Qsize = q.size();
 			for(int i = 0; i < Qsize; i++) {
 				int tmp = q.poll();
@@ -40,6 +46,7 @@ public class Main {
 					System.exit(0);
 				}
 				
+				//노드 예외처리. 값 비교 구문이 먼저 나와야한다.
 				if(tmp*2 <= 100000 && tmp*2 > 0 && check[tmp*2] == false) {
 					q.add(tmp*2);
 					check[tmp*2] = true;
