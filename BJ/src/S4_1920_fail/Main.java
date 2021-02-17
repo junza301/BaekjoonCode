@@ -1,4 +1,4 @@
-package fail_1920;
+package S4_1920_fail;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

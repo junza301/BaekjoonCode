@@ -1,4 +1,4 @@
-package fail_18870;
+package S2_18870_fail;
 
 import java.io.BufferedReader;
 import java.io.IOException;
