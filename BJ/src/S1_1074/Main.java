@@ -18,71 +18,48 @@ public class Main {
 		a = Integer.parseInt(st.nextToken());
 		b = Integer.parseInt(st.nextToken());
 		
-
-		int start = 0;
-		int end = (int)Math.pow(2, n);
-		
-		while(end-start != 1) {
-			end/=2;
-			int length = end-start;
-			if(a < end && b < end) {
-				continue;
-			}
-			else if(a < end && b > end) {
-				count += length * length;
-				start = end;
-				end *= 2;
-			}
-			else if(a > end && b < end) {
-				
-			}
-			else if(a > end && b > end) {
-				
-			}
-		}
-		
-		
-		
-		
-		
-		
-		recursion(n, 0, (int)Math.pow(2, n), 0, (int)Math.pow(2, n));
+		culc(n, 0, (int)Math.pow(2, n), 0, (int)Math.pow(2, n));
+		System.out.println(count-1);
 	}
 
-	private static void recursion(int now, int x1, int x2, int y1, int y2) {
-			if(now != 1) {
-				recursion(now-1, x1, x2/2, y1, y2/2);
-				recursion(now-1, x1, x2/2, y2/2, y2);
-				recursion(now-1, x2/2, x2, y1, y2/2);
-				recursion(now-1, x2/2, x2, y2/2, y2);
+	private static void culc(int now, int x1, int x2, int y1, int y2) {
+			while(now != 1) {
+				int length = (x2-x1)/2;
+				int halfx = x2 - ((x2-x1)/2);
+				int halfy = y2 - ((y2-y1)/2);
+				if(a >= x1 && a < halfx && b >= y1 && b < halfy) {
+					x2 = halfx;
+					y2 = halfy;
+				}
+				else if(a >= x1 && a < halfx && b >= halfy && b < y2) {
+					count += length * length;
+					x2 = halfx;
+					y1 = halfy;
+				}
+				else if(a >= halfx && a < x2 && b >= y1 && b < halfy) {
+					count += length * length * 2;
+					x1 = halfx;
+					y2 = halfy;
+				}
+				else if(a >= halfx && a < x2 && b >= halfy && b < y2) {
+					count += length * length * 3;
+					x1 = halfx;
+					y1 = halfy;
+				}
+				now--;
 			}
 			
-			if(x1 == a && y1 == b) {
-				System.out.println(count);
-				System.exit(0);
+			if(a == x1) {
+				if(b == y1)
+					count++;
+				else
+					count+=2;
 			}
-			else
-				count++;
-			
-			if(x1 == a && y2-1 == b) {
-				System.out.println(count);
-				System.exit(0);
+			else {
+				if(b == y1)
+					count+=3;
+				else
+					count+=4;
 			}
-			else
-				count++;
-			
-			if(x2-1 == a && y1 == b) {
-				System.out.println(count);
-				System.exit(0);
-			}
-			else
-				count++;
-			
-			if(x2-1 == a && y2-1 == b) {
-				System.out.println(count);
-				System.exit(0);
-			}
-			else
-				count++;
 	}
 }
