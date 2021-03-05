@@ -17,52 +17,45 @@ public class Main {
 		StringTokenizer st;
 		int t = Integer.parseInt(bf.readLine());
 		
+		Queue<Integer> maxQueue = new PriorityQueue<>(Collections.reverseOrder());
+		Queue<Integer> minQueue = new PriorityQueue<>();
+		
 		for(int v = 0; v < t; v++) {
-			Queue<Integer> maxQueue = new PriorityQueue<>(Collections.reverseOrder());
-			Queue<Integer> minQueue = new PriorityQueue<>();
-			int pushcount = 0;
-			int popcount = 0;
-			
+
 			int k = Integer.parseInt(bf.readLine());
 			for(int b = 0; b < k; b++) {
 				String str = bf.readLine();
 				st = new StringTokenizer(str);
+				
 				if(st.nextToken().equals("I")) {
 					int num = Integer.parseInt(st.nextToken());
 					maxQueue.add(num);
 					minQueue.add(num);
-					pushcount++;
 				}
 				else {
 					if(maxQueue.isEmpty())
 						continue;
 					
 					if(st.nextToken().equals("1")) {
-						maxQueue.poll();
-						popcount++;
+						int num = maxQueue.poll();
+						minQueue.remove(num);
 					}
 					else {
-						minQueue.poll();
-						popcount++;
+						int num = minQueue.poll();
+						maxQueue.remove(num);
 					}
-				}
-				
-				if(pushcount == popcount) {
-					maxQueue = new PriorityQueue<>(Collections.reverseOrder());
-					minQueue = new PriorityQueue<>();
-					pushcount = 0;
-					popcount = 0;
 				}
 			}
 			
-			if(maxQueue.size() == 0 || minQueue.size() == 0) {
+			if(maxQueue.size() == 0) {
 				System.out.println("EMPTY");
 			}
 			else {
 				System.out.println(maxQueue.poll() + " " + minQueue.poll());
 			}
 			
-			
+			maxQueue.clear();
+			minQueue.clear();
 		}
 	}
 }
