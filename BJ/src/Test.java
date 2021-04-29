@@ -7,10 +7,15 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Test {
+	static int x = 10;
+	
+	public void printx() {
+		System.out.println(Test.x);
+	}
 
 	public static void main(String[] args) throws IOException {
-		int a = 'b';
-		System.out.println(a - 'a');
+		Test t = new Test();
+		t.printx();
 	}
 
 }
