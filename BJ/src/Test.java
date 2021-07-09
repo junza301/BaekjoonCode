@@ -5,9 +5,9 @@ import java.io.InputStreamReader;
 public class Test {
 
 	public static void main(String[] args){
-		int x = 62;
-		int y = 1;
-		System.out.println((x+y)/2);
+		char x = '2';
+		for(int i = 0; i < x; i++)
+			System.out.println("1");
 	}
 
 }
