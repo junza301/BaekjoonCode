@@ -14,6 +14,7 @@ public class Test {
 		a += b;
 		a += c;
 		System.out.println(a);
+		System.out.println("Á¦¹ß");
 	}
 
 }
