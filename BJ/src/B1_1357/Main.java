@@ -10,6 +10,7 @@ public class Main {
 		System.out.println(Rev(Integer.toString(Rev(x)+Rev(y))));
 	}
 	
+	
 	public static int Rev(String a) {
 		int n = a.length();
 		int tmp = Integer.parseInt(a);
