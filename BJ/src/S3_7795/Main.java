@@ -55,6 +55,7 @@ public class Main {
 				return mid;
 			}
 		}
+		
 		if(l_change) 
 			return last;
 		else
